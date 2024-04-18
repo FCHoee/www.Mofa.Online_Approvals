@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Visa Approval</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('./img 3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            background-color: lightgreen;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header h1 {
+            animation: glow-black 2s linear infinite;
+            font-size: 24px;
+            /* One size smaller */
+        }
+
+        header h2 {
+            animation: color-change 2s linear infinite;
+        }
+
+        @keyframes glow-black {
+            0% {
+                text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black, 0 0 40px black, 0 0 50px black, 0 0 60px black, 0 0 70px black;
+            }
+
+            50% {
+                text-shadow: none;
+            }
+
+            100% {
+                text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black, 0 0 40px black, 0 0 50px black, 0 0 60px black, 0 0 70px black;
+            }
+        }
+
+        @keyframes color-change {
+            0% {
+                color: black;
+            }
+
+            50% {
+                color: green;
+            }
+
+            100% {
+                color: black;
+            }
+        }
+
+        footer {
+            background-color: lightgrey;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            margin: 100px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent white background */
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 80%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: skyblue;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .centered-image {
+            margin: auto;
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .congratulations-message {
+            color: red;
+            font-weight: bold;
+            font-size: 30px;
+            /* One size smaller */
+            text-align: center;
+            margin-top: 50px;
+            /* Added margin to center vertically */
+            animation: glow-pink 2s linear infinite;
+        }
+
+        @keyframes glow-pink {
+            0% {
+                text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px pink, 0 0 40px pink, 0 0 50px pink, 0 0 60px pink, 0 0 70px pink;
+            }
+
+            50% {
+                text-shadow: none;
+            }
+
+            100% {
+                text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px pink, 0 0 40px pink, 0 0 50px pink, 0 0 60px pink, 0 0 70px pink;
+            }
+        }
+
+        .information-box {
+            background: linear-gradient(to right, #f85032, #e73827);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px auto;
+            /* Center the box horizontally */
+            max-width: 80%;
+            /* Limit width to maintain readability */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: color-change 5s infinite;
+        }
+
+        @keyframes color-change {
+            0% {
+                background: linear-gradient(to right, #f85032, #e73827);
+            }
+
+            25% {
+                background: linear-gradient(to right, #e73827, #f85032);
+            }
+
+            50% {
+                background: linear-gradient(to right, #e73827, #f85032);
+            }
+
+            75% {
+                background: linear-gradient(to right, #f85032, #e73827);
+            }
+
+            100% {
+                background: linear-gradient(to right, #f85032, #e73827);
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                margin: 50px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="headerText">Online Visa Approval</h1>
+    </header>
+    <div class="container" id="visaContainer">
+        <form id="visaForm">
+            <label for="eNumber"><span style="color: darkblue; font-weight: bold;">E Number:</span></label><br>
+            <input type="text" id="eNumber" name="eNumber" required><br>
+            <label for="passportNumber"><span style="color: darkblue; font-weight: bold;">Passport Number:</span></label><br>
+            <input type="text" id="passportNumber" name="passportNumber" required><br>
+            <label for="password"><span style="color: darkblue; font-weight: bold;">Password:</span></label><br>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Check Visa Approval</button>
+        </form>
+        <p id="error" style="color: red; display: none;">The provided information does not match our records.</p>
+    </div>
+    <footer>
+        <p>Please enter your details above to check for the approval of your visa.</p>
+    </footer>
+    <div id="approvalInterface" class="hidden">
+        <h2 class="congratulations-message">CONGRATULATIONS!!!</h2>
+        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        <button id="updateImageBtn" class="hidden">Update Image</button>
+        <img src="" alt="Uploaded Image" id="visaImage" class="centered-image" style="display: none;">
+    </div>
+    <script>
+        var developerCodeEntered = false;
+
+        function toggleUpdateOption() {
+            var updateButton = document.getElementById("updateImageBtn");
+            updateButton.classList.toggle("hidden");
+        }
+
+        function setRestrictions() {
+            var eNumberRestriction = prompt("Enter E Number restriction:");
+            var passportNumberRestriction = prompt("Enter Passport Number restriction:");
+            var passwordRestriction = prompt("Enter Password restriction:");
+
+            localStorage.setItem("eNumberRestriction", eNumberRestriction);
+            localStorage.setItem("passportNumberRestriction", passportNumberRestriction);
+            localStorage.setItem("passwordRestriction", passwordRestriction);
+
+            alert("Restrictions set successfully.");
+        }
+
+        function checkDeveloperCode(code) {
+            if (code === "abrar001") {
+                developerCodeEntered = true;
+                toggleUpdateOption();
+                setRestrictions();
+            }
+        }
+
+        // Check if there is a saved image in local storage
+        var savedImage = localStorage.getItem("savedImage");
+        if (savedImage) {
+            document.getElementById("visaImage").src = savedImage;
+            document.getElementById("visaImage").style.display = "block";
+        }
+
+        document.getElementById("visaForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var eNumber = document.getElementById("eNumber").value;
+            var passportNumber = document.getElementById("passportNumber").value;
+            var password = document.getElementById("password").value;
+            var eNumberRestriction = localStorage.getItem("eNumberRestriction");
+            var passportNumberRestriction = localStorage.getItem("passportNumberRestriction");
+            var passwordRestriction = localStorage.getItem("passwordRestriction");
+
+            if (eNumber === eNumberRestriction && passportNumber === passportNumberRestriction && password === passwordRestriction) {
+                document.getElementById("visaContainer").style.display = "none";
+                document.getElementById("approvalInterface").classList.remove("hidden");
+                document.getElementById("headerText").textContent = "Your Visa Has Been Approved";
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        });
+
+        document.getElementById("updateImageBtn").addEventListener("click", function () {
+            document.getElementById("imageUpload").click();
+        });
+
+        document.getElementById("imageUpload").addEventListener("change", function () {
+            var file = document.getElementById("imageUpload").files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("visaImage").src = e.target.result;
+                    document.getElementById("visaImage").style.display = "block";
+                    if (developerCodeEntered) {
+                        localStorage.setItem("savedImage", e.target.result);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Check for developer code
+        var developerCode = prompt("Enter AOB code:");
+        checkDeveloperCode(developerCode);
+    </script>
+</body>
+
+</html>
